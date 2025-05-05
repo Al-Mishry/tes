@@ -44,7 +44,7 @@
     <div class="container">
         <h1>Welcome to Laravel</h1>
         <p>Your Laravel application is up and running!</p>
-        <a href="{{ url('/home') }}">Go to Home</a>
+        <a href="#">Go to Home</a>
     </div>
 </body>
 </html> 
