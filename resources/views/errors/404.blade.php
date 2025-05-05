@@ -3,218 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Lost in Cyberspace</title>
+    <title>403 - Forbidden Realm</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <style>
-        .cyberpunk-bg {
-            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+        .fantasy-bg {
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
         }
 
-        .cyber-glow {
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8),
-                         0 0 20px rgba(0, 255, 255, 0.6),
-                         0 0 30px rgba(0, 255, 255, 0.4);
-        }
-
-        .cyber-border {
-            border: 2px solid #00ffff;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5),
-                        inset 0 0 15px rgba(0, 255, 255, 0.3);
-        }
-
-        .cyber-button {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .cyber-button::before {
-            content: '';
+        .dragon-silhouette {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                transparent 45%,
-                rgba(0, 255, 255, 0.5) 50%,
-                transparent 55%
-            );
-            transform: rotate(45deg);
-            transition: all 0.5s;
-        }
-
-        .cyber-button:hover::before {
-            left: 100%;
-        }
-
-        .matrix-fall {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500"><path d="M650,300 Q700,250 750,300 T850,250 Q900,200 800,150 Q700,100 650,150 Q600,200 550,150 Q500,100 450,150 Q400,200 350,150 Q300,100 250,150 Q200,200 150,150 Q100,100 50,150 Q0,200 50,250 Q100,300 150,250 Q200,200 250,250 Q300,300 350,250 Q400,200 450,250 Q500,300 550,250 Q600,200 650,250 Z" fill="none" stroke="%23ff6b35" stroke-width="3"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.15;
             z-index: 0;
         }
 
-        .matrix-char {
+        .spell-circle {
+            width: 300px;
+            height: 300px;
+            border: 2px solid #6b46c1;
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto 2rem;
+            box-shadow: 0 0 25px rgba(107, 70, 193, 0.5);
+        }
+
+        .spell-circle::before, .spell-circle::after {
+            content: '';
             position: absolute;
-            color: rgba(0, 255, 0, 0.7);
-            font-family: 'Courier New', monospace;
-            font-size: 16px;
-            user-select: none;
-        }
-
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-
-        .scanlines {
-            position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            background: repeating-linear-gradient(
-                to bottom,
-                transparent 0%,
-                rgba(0, 255, 255, 0.05) 0.5%,
-                transparent 1%
-            );
-            pointer-events: none;
+            border-radius: 50%;
+            border: 1px solid transparent;
+            border-top-color: #6b46c1;
+            animation: spin 15s linear infinite;
+        }
+
+        .spell-circle::after {
+            border-top-color: #f56565;
+            animation-direction: reverse;
+            animation-duration: 20s;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .magic-rune {
+            position: absolute;
+            font-size: 2rem;
+            color: #f56565;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .floating-island {
+            position: relative;
+            background: linear-gradient(145deg, #2d3748, #1a202c);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5),
+                        inset 0 5px 15px rgba(255,255,255,0.1);
+            padding: 3rem;
             z-index: 10;
-            animation: scanline 4s linear infinite;
+            border: 1px solid #4a5568;
+            transform-style: preserve-3d;
         }
 
-        .pulse {
-            animation: pulse 2s infinite;
+        .floating-island::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #ff6b35, #6b46c1, #4299e1);
+            z-index: -1;
+            border-radius: 25px;
+            opacity: 0.7;
+            filter: blur(20px);
         }
 
-        @keyframes pulse {
-            0% { opacity: 0.7; }
-            50% { opacity: 1; }
-            100% { opacity: 0.7; }
+        .magic-button {
+            background: linear-gradient(45deg, #6b46c1, #805ad5);
+            border: none;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(107, 70, 193, 0.4);
+        }
+
+        .magic-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(107, 70, 193, 0.6);
+        }
+
+        .magic-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .magic-button:hover::before {
+            left: 100%;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: white;
+            pointer-events: none;
+        }
+
+        .ancient-text {
+            font-family: 'Times New Roman', serif;
+            color: #d1d5db;
+            text-shadow: 0 0 5px rgba(255,255,255,0.3);
         }
     </style>
 </head>
-<body class="cyberpunk-bg text-green-400 min-h-screen flex items-center justify-center overflow-hidden">
-    <div class="matrix-fall" id="matrix"></div>
-    <div class="scanlines"></div>
+<body class="fantasy-bg text-gray-100 min-h-screen flex items-center justify-center overflow-hidden p-4">
+    <div class="dragon-silhouette"></div>
 
-    <div class="container mx-auto px-4 py-10 text-center relative z-10">
-        <div class="mb-10">
-            <svg class="mx-auto h-32 w-32 cyber-glow pulse" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8 14C8 14 9.5 16 12 16C14.5 16 16 14 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M9 9H9.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M15 9H15.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+    <div class="floating-island max-w-2xl mx-auto text-center">
+        <div class="spell-circle">
+            <!-- Rune positions -->
+            <div class="magic-rune" style="top: 20%; left: 50%; transform: translateX(-50%);">ᚠ</div>
+            <div class="magic-rune" style="top: 50%; left: 20%; transform: translateY(-50%);">ᚢ</div>
+            <div class="magic-rune" style="top: 50%; right: 20%; transform: translateY(-50%);">ᚦ</div>
+            <div class="magic-rune" style="bottom: 20%; left: 50%; transform: translateX(-50%);">ᚨ</div>
+
+            <div class="absolute inset-0 flex items-center justify-center">
+                <h1 class="text-8xl font-bold text-purple-400 mb-0">403</h1>
+            </div>
         </div>
 
-        <div class="cyber-border p-8 mb-10 bg-black bg-opacity-50 backdrop-blur-sm">
-            <h1 class="text-8xl font-bold mb-4 cyber-glow">404</h1>
-            <h2 class="text-2xl font-mono mb-6 tracking-widest">ERROR: PAGE NOT FOUND</h2>
-            <p class="text-gray-300 font-mono max-w-2xl mx-auto">
-                >_ SYSTEM ALERT: TARGET LOCATION UNAVAILABLE<br>
-                >_ POSSIBLE CAUSES: INVALID COORDINATES, DATA CORRUPTION, OR NETWORK ANOMALY<br>
-                >_ SUGGESTED ACTION: RETURN TO HOME BASE OR INITIATE SYSTEM DIAGNOSTIC
-            </p>
-        </div>
+        <h2 class="text-3xl font-bold text-purple-300 mb-4">Forbidden Realm</h2>
 
-        <div class="flex flex-col md:flex-row gap-6 justify-center">
-            <a href="/" class="cyber-button px-8 py-3 bg-black text-green-400 font-mono border border-green-400 rounded-none">
-                >_ RETURN TO HOME
+        <p class="ancient-text text-xl mb-8 leading-relaxed">
+            By decree of the Arcane Council, this realm is protected by ancient wards.
+            Mere mortals cannot pass without the proper magical credentials.
+        </p>
+
+        <div class="flex flex-col md:flex-row gap-4 justify-center">
+            <a href="/" class="magic-button px-8 py-3 rounded-lg font-medium">
+                Return to the Village
             </a>
-            <button id="diagnosticBtn" class="cyber-button px-8 py-3 bg-black text-cyan-400 font-mono border border-cyan-400 rounded-none">
-                >_ RUN DIAGNOSTIC
+            <button id="requestAccess" class="px-8 py-3 bg-gray-800 border border-purple-500 text-purple-300 rounded-lg font-medium hover:bg-gray-700 transition">
+                Request Magical Access
             </button>
         </div>
 
-        <div class="mt-16 text-gray-500 font-mono text-sm">
-            <p>>_ SYSTEM STATUS: ONLINE | v2.5.1 | © 2025 CYBER SYSTEMS</p>
+        <div class="mt-10 text-gray-400 ancient-text">
+            <p>Scroll of Prohibition • Sealed in the Year of the Phoenix</p>
         </div>
     </div>
 
     <script>
-        // Matrix rain effect
-        const matrix = document.getElementById('matrix');
-        const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
-        const fontSize = 16;
-        const columns = Math.floor(window.innerWidth / fontSize);
-        const drops = Array(columns).fill(1);
+        // Create magical sparkles
+        document.addEventListener('mousemove', function(e) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = e.pageX + 'px';
+            sparkle.style.top = e.pageY + 'px';
+            document.body.appendChild(sparkle);
 
-        function createMatrix() {
-            for (let i = 0; i < columns; i++) {
-                const char = document.createElement('div');
-                char.className = 'matrix-char';
-                char.style.left = (i * fontSize) + 'px';
-                char.style.top = (drops[i] * fontSize) + 'px';
-                char.textContent = chars.charAt(Math.floor(Math.random() * chars.length));
-                matrix.appendChild(char);
+            // Random size
+            const size = Math.random() * 4 + 2;
+            sparkle.style.width = size + 'px';
+            sparkle.style.height = size + 'px';
 
-                if (drops[i] * fontSize > window.innerHeight && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
+            // Random color
+            const colors = ['#f56565', '#4299e1', '#6b46c1', '#f6ad55'];
+            sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
 
-            // Remove old characters
-            const matrixChars = document.querySelectorAll('.matrix-char');
-            if (matrixChars.length > 200) {
-                for (let i = 0; i < 20; i++) {
-                    if (matrixChars[i]) matrix.removeChild(matrixChars[i]);
-                }
-            }
-        }
+            // Animate and remove
+            gsap.to(sparkle, {
+                x: 'random(-20,20)',
+                y: 'random(-20,20)',
+                opacity: 0,
+                duration: 1,
+                onComplete: () => sparkle.remove()
+            });
+        });
 
-        setInterval(createMatrix, 50);
+        // Animate runes
+        const runes = document.querySelectorAll('.magic-rune');
+        runes.forEach((rune, i) => {
+            gsap.to(rune, {
+                y: 'random(-10,10)',
+                duration: 'random(3,5)',
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                delay: i * 0.5
+            });
+        });
 
-        // Button effects
-        document.getElementById('diagnosticBtn').addEventListener('click', function() {
-            const originalText = this.textContent;
-            this.textContent = ">_ DIAGNOSTIC IN PROGRESS...";
+        // Animate spell circle
+        const circle = document.querySelector('.spell-circle');
+        gsap.to(circle, {
+            rotation: 360,
+            duration: 120,
+            repeat: -1,
+            ease: 'none'
+        });
+
+        // Button interaction
+        document.getElementById('requestAccess').addEventListener('click', function() {
+            this.textContent = 'Sending Raven...';
             this.disabled = true;
 
             setTimeout(() => {
-                this.textContent = ">_ ERROR TRACKING FAILED";
+                this.textContent = 'Request Denied!';
+                this.classList.add('text-red-400');
+
+                // Create magical explosion effect
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'sparkle';
+                    particle.style.left = this.getBoundingClientRect().left + this.offsetWidth/2 + 'px';
+                    particle.style.top = this.getBoundingClientRect().top + this.offsetHeight/2 + 'px';
+                    document.body.appendChild(particle);
+
+                    gsap.to(particle, {
+                        x: 'random(-100,100)',
+                        y: 'random(-100,100)',
+                        opacity: 0,
+                        duration: 1.5,
+                        onComplete: () => particle.remove()
+                    });
+                }
+
                 setTimeout(() => {
-                    this.textContent = originalText;
+                    this.textContent = 'Request Magical Access';
+                    this.classList.remove('text-red-400');
                     this.disabled = false;
-                }, 1500);
-            }, 2000);
+                }, 2000);
+            }, 1500);
         });
 
-        // GSAP animations
-        gsap.from(".cyber-border", {
+        // Initial animations
+        gsap.from('.floating-island', {
             duration: 1.5,
-            scale: 0.8,
+            y: 50,
             opacity: 0,
-            ease: "power3.out"
+            ease: 'back.out(1.2)'
         });
 
-        gsap.from("h1", {
+        gsap.from('.spell-circle', {
             duration: 1,
-            y: -50,
+            scale: 0,
             opacity: 0,
-            ease: "back.out(1.7)"
-        });
-
-        gsap.from("h2, p", {
-            duration: 1,
-            y: 30,
-            opacity: 0,
-            stagger: 0.2,
+            ease: 'elastic.out(1, 0.5)',
             delay: 0.5
         });
 
-        gsap.from(".flex", {
+        gsap.from('h2, p', {
             duration: 1,
-            y: 30,
+            y: 20,
             opacity: 0,
+            stagger: 0.2,
             delay: 1
         });
     </script>
