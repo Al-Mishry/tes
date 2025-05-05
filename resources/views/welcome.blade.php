@@ -47,4 +47,4 @@
         <a href="{{ url('/home') }}">Go to Home</a>
     </div>
 </body>
-</html>
+</html> 
