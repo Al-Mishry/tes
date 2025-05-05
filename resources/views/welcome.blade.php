@@ -86,6 +86,12 @@
   </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Welcome to Laravel</h1>
+        <p>Your Laravel application is up and running!</p>
+        <a href="{{ url('/home') }}">Go to Home</a>
+        <p>Or check out the <a href="https://laravel.com/docs">Laravel Documentation</a> for more information.</p>
+        <p>For more information about this application, visit the <a href="#">About Page</a>.</p>
 
   <header>
     <h1>Welcome to AwesomeApp</h1>
