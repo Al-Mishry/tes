@@ -32,8 +32,8 @@
     }
 
     * {
-      margin: 0; 
-      padding: 0; 
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
     body {
@@ -319,6 +319,7 @@
         <p>Optimized for speed and smooth UX across all devices. Experience instant loading and seamless transitions.</p>
       </div>
     </div>
+    <a href="{{ route('products.index') }}">View Product</a>
   </section>
 
   <footer>
